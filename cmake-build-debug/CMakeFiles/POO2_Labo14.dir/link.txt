@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/POO2_Labo14.dir/main.cpp.o CMakeFiles/POO2_Labo14.dir/cstring.cpp.o  -o POO2_Labo14 
