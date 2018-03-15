@@ -42,6 +42,23 @@ String& String::operator=(const String &str) {
     return *this;
 }
 
+String::String(const char c) {
+
+}
+
+String::String(const int i) {
+    string = new char[length+1];
+    sprintf()
+}
+
+String::String(const double d) {
+
+}
+
+String::String(const bool b) {
+
+}
+
 std::ostream& operator<<(std::ostream& os, const String& str) {
     for(size_t i = 0; i < str.length; i++) {
         os << str.string[i];
