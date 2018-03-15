@@ -10,7 +10,6 @@ String::String() {
     string[0] = EOS;
 }
 
-// TODO: for the case if there is no EOS found, we can probably create a long long counter and throw an exception if it overflows
 String::String(char* str){
     length = 0;
     while(str[length] != EOS) {
@@ -18,7 +17,8 @@ String::String(char* str){
     }
     string = new char[length+1];
 
-    // TODO: replace with memcpy
+    memcpy(string, str, length+1);
+
     for (size_t i = 0; i <= length; ++i) {
         string[i] = str[i];
     }
@@ -37,10 +37,7 @@ String& String::operator=(const String &str) {
         string = new char[length+1];
     }
 
-    // TODO: replace with memcpy
-    for (size_t i = 0; i <= length; ++i) {
-        string[i] = str.string[i];
-    }
+    memcpy(string, str.string, length+1);
 
     return *this;
 }
