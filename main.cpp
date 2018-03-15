@@ -12,4 +12,7 @@ int main(){
     char charArray[10] = {'c', 'o', 'n', 'v', 'e', 'r', 't', 'e', 'd', '\0'};
     String strFromCharArray(charArray);
     cout << "<" << strFromCharArray << ">" << endl;
+    cout << "Creating a string from another string" << endl;
+    String strFromStr(strFromCharArray);
+    cout << "<" << strFromStr << ">" << endl;
 }

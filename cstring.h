@@ -16,7 +16,12 @@ private:
 public:
     String();
     String(char* str);
+    String(const String& str);
+
     size_t size() const;
+    const char* toCharArray() const;
+
+    String& operator=(const String& str);
     friend std::ostream& operator<<(std::ostream& os, const String& str);
 };
 

@@ -17,13 +17,32 @@ String::String(char* str){
         length++;
     }
     string = new char[length+1];
+
+    // TODO: replace with memcpy
     for (size_t i = 0; i <= length; ++i) {
         string[i] = str[i];
     }
 }
 
-size_t String::size() const{
-    return length;
+String::String(const String& str) {
+    length = str.length;
+    string = new char[length+1];
+    *this = str;
+}
+
+String& String::operator=(const String &str) {
+    if(length != str.length) { // no need to recreate the string if the sizes are equal
+        delete[] string;
+        length = str.length;
+        string = new char[length+1];
+    }
+
+    // TODO: replace with memcpy
+    for (size_t i = 0; i <= length; ++i) {
+        string[i] = str.string[i];
+    }
+
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const String& str) {
@@ -32,3 +51,14 @@ std::ostream& operator<<(std::ostream& os, const String& str) {
     }
     return os;
 }
+
+
+size_t String::size() const{
+    return length;
+}
+
+const char* String::toCharArray() const {
+
+}
+
+
