@@ -35,6 +35,11 @@ public:
     void print(String& str) const;
 
     //TODO :Demande précisions au sujet de la partie facultative
+    //TODO: need a function char* + String
+    //TODO: + has to be a fucntion and not a method
+    //TODO: [] operator
+    //TODO: destructor
+    //TODO: check if we need operator=(char*), guess no need cuz we have a corresponding constructor
 
     size_t size() const;
     const char* toCharArray() const;
@@ -44,7 +49,7 @@ public:
     String& operator=(const char* str);
     bool operator==(const String& str) const;
     String& operator+=(const String& str);
-    String operator+(const String& str);
+    String operator+(const String& str); // gotta be a function
     friend std::ostream& operator<<(std::ostream& os, const String& str);
 };
 

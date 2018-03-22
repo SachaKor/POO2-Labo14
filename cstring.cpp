@@ -4,7 +4,6 @@
 #define EOS '\0'
 #define BUFFER_SIZE 1024
 #include "cstring.h"
-#include "stdexcept"
 
 String::String() {
     length = 0;
@@ -29,7 +28,7 @@ String::String(const String& str) {
 }
 
 String& String::operator=(const String &str) {
-    if(length != str.length) { // no need to recreate the string if the sizes are equal
+    if(&str != this && length != str.length) { // no need to recreate the string if the sizes are equal
         delete[] string;
         length = str.length;
         string = new char[length+1];
@@ -43,6 +42,14 @@ String& String::operator=(const String &str) {
 String& String::operator=(const char *str){
     String toAssign(str);
     return (*this) = toAssign;
+}
+
+String& String::assign(const char *str) {
+    return (*this) = str;
+}
+
+String& String::assign(const String &str) {
+    return (*this) = str;
 }
 
 String::String(const char c) {

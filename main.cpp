@@ -39,5 +39,13 @@ int main(){
     cout << "one: " << one << endl;
     cout << "Assigning a char array to a string..." << endl;
     two = charArray;
-    cout << "two: " << two << endl;
+    cout << "two = charArray, two: " << two << endl;
+    two.assign(one);
+    cout << "two.assign(one), two: " << two << endl;
+    two.assign(charArray);
+    cout << "two.assign(charArray), two: " << two << endl;
+    // no need to surcharge the '=' operator with the int parameter
+    // because we have the constructor who take an int as a parameter
+    String strFromInt1 = 23;
+    cout << strFromInt1 << endl;
 }
