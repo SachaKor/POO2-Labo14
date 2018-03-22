@@ -39,10 +39,10 @@ String& String::operator=(const String &str) {
     return *this;
 }
 
-String& String::operator=(const char *str){
-    String toAssign(str);
-    return (*this) = toAssign;
-}
+//String& String::operator=(const char *str){
+//    String toAssign(str);
+//    return (*this) = toAssign;
+//}
 
 String& String::assign(const char *str) {
     return (*this) = str;

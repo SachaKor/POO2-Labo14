@@ -46,7 +46,7 @@ public:
     char& at(size_t i);
 
     String& operator=(const String& str);
-    String& operator=(const char* str);
+    //String& operator=(const char* str);
     bool operator==(const String& str) const;
     String& operator+=(const String& str);
     String operator+(const String& str); // gotta be a function
