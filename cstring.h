@@ -15,12 +15,12 @@ private:
     size_t length;
 public:
     String();
-    explicit String(const char* str);
+    String(const char* str);
     String(const String& str);
-    String(char c);
-    String(int i);
-    String(double d);
-    String(bool b);
+    String(const char c);
+    String(const int i);
+    String(const double d);
+    String(const bool b);
 
     bool equals(const String& str) const;
 
@@ -30,27 +30,23 @@ public:
     String& append(const String& str);
     String concat(const String& str) const;
 
-    String subString(String& str, size_t first, size_t last) const;
-
-    void print(String& str) const;
+    String subString(size_t pos = 0, size_t len = std::numeric_limits<std::size_t>::max()) const;
 
     //TODO :Demande précisions au sujet de la partie facultative
-    //TODO: need a function char* + String
-    //TODO: + has to be a fucntion and not a method
-    //TODO: [] operator
     //TODO: destructor
-    //TODO: check if we need operator=(char*), guess no need cuz we have a corresponding constructor
 
     size_t size() const;
-    const char* toCharArray() const;
-    char& at(size_t i);
+    const char* data() const;
+    char& at(const size_t i);
 
     String& operator=(const String& str);
-    //String& operator=(const char* str);
-    bool operator==(const String& str) const;
     String& operator+=(const String& str);
-    String operator+(const String& str); // gotta be a function
+    char& operator[](const size_t i);
+
+    // these operators will not change the object so they have no need to be the member functions
     friend std::ostream& operator<<(std::ostream& os, const String& str);
+    friend bool operator==(const String& left, const String& right);
+    friend String operator+(const String& left, const String& right);
 };
 
 

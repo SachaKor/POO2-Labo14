@@ -4,6 +4,7 @@
 #define EOS '\0'
 #define BUFFER_SIZE 1024
 #include "cstring.h"
+#include <limits>
 
 String::String() {
     length = 0;
@@ -24,7 +25,7 @@ String::String(const char* str){
 String::String(const String& str) {
     length = str.length;
     string = new char[length+1];
-    *this = str;
+    memcpy(string, str.string, length+1);
 }
 
 String& String::operator=(const String &str) {
@@ -38,11 +39,6 @@ String& String::operator=(const String &str) {
 
     return *this;
 }
-
-//String& String::operator=(const char *str){
-//    String toAssign(str);
-//    return (*this) = toAssign;
-//}
 
 String& String::assign(const char *str) {
     return (*this) = str;
@@ -76,26 +72,31 @@ String::String(const double d) {
 
 String::String(const bool b) {
     if(b) {
-        *this = String("true");
+        length = 4;
+        string = new char[length+1];
+        memcpy(string, "true", length+1);
     } else {
-        *this = String("false");
+        length = 5;
+        string = new char[length+1];
+        memcpy(string, "false", length+1);
     }
 }
 
-bool String::operator==(const String &str) const {
-    if(length == str.length && !memcmp(string, str.string, length)) {
-        return true;
-    }
-    return false;
+bool operator==(const String& left, const String& right) {
+    return left.length == right.length && !memcmp(left.string, right.string, left.length);
 }
 
 bool String::equals(const String &str) const {
     return *this == str;
 }
 
-char& String::at(size_t i) {
+char& String::at(const size_t i) {
+    return string[i];
+}
+
+char& String::operator[](const size_t i) {
     if(i >= length) {
-        throw std::out_of_range("String::at() : index out of range");
+        throw std::out_of_range("index out of range");
     }
     return string[i];
 }
@@ -108,12 +109,53 @@ std::ostream& operator<<(std::ostream& os, const String& str) {
 }
 
 
-size_t String::size() const{
+size_t String::size() const {
     return length;
 }
 
-const char* String::toCharArray() const {
-
+const char* String::data() const {
+    return string;
 }
 
+String operator+(const String& left, const String& right) {
+    // we can also do this using strcat function, but this method seems to be faster because we already know
+    // the lengths of the char arrays
+    size_t length = left.length + right.length;
+    char string[length+1];
+    memcpy(string, left.string, left.length); // do not copy the EOS char here
+    memcpy(string+left.length, right.string, right.length+1); // copy the EOS char here
+    String res(string);
+    return res;
+}
+
+String String::concat(const String &str) const {
+    return *this + str;
+}
+
+String& String::operator+=(const String &str) {
+    *this = *this + str;
+    return *this;
+}
+
+String& String::append(const String &str) {
+    return *this += str;
+}
+
+String String::subString(size_t pos, size_t len) const {
+    if(pos > length) {
+        throw std::out_of_range("index out of range");
+    }
+
+    // if the index of the last character of the substring is out of string's length,
+    // we fit it to string's length
+    if(len == std::numeric_limits<std::size_t>::max() || pos + len - 1 > length) {
+        len = length - pos + 1;
+    }
+
+    char substr[len+1];
+    memcpy(substr, string+pos, len);
+    substr[len] = EOS;
+
+    return String(substr);
+}
 
