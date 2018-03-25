@@ -22,6 +22,8 @@ public:
     String(const double d);
     String(const bool b);
 
+    ~String();
+
     bool equals(const String& str) const;
 
     String& assign(const String& str);

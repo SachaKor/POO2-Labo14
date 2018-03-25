@@ -28,6 +28,12 @@ String::String(const String& str) {
     memcpy(string, str.string, length+1);
 }
 
+String::~String(){
+    if(string != nullptr) {
+        delete string;
+    }
+}
+
 String& String::operator=(const String &str) {
     if(&str != this && length != str.length) { // no need to recreate the string if the sizes are equal
         delete[] string;
