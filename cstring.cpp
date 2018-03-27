@@ -1,10 +1,13 @@
-//
-// Created by Shon on 14/03/18.
-//
+/*
+ * Created by Sacha Korukova and Samuel Mayor on 14/03/18.
+ *
+ * This class is an ersatz of String implementation of the STL
+*/
 #define EOS '\0'
 #define BUFFER_SIZE 1024
 #include "cstring.h"
 #include <limits>
+#include <string.h>
 
 String::String() {
     length = 0;
@@ -124,7 +127,7 @@ const char* String::data() const {
 }
 
 String operator+(const String& left, const String& right) {
-    // we can also do this using strcat function, but this method seems to be faster because we already know
+    // we can also do this using strcat function, but this method is faster because we already know
     // the lengths of the char arrays
     size_t length = left.length + right.length;
     char string[length+1];
