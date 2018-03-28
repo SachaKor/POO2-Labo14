@@ -15,7 +15,7 @@ String::String() {
     string[0] = EOS;
 }
 
-String::String(const char* str){
+String::String(const char* str) {
     length = 0;
     while(str[length] != EOS) {
         length++;
@@ -59,24 +59,23 @@ String& String::assign(const String &str) {
 
 String::String(const char c) {
     length = 1;
-    string = new char[length+1];
+    string  = new char[length+1];
     string[0] = c;
     string[1] = EOS;
 }
 
 String::String(const int i) {
-    char buffer[BUFFER_SIZE];
-    int l;
-    length = (size_t)sprintf(buffer, "%d", i);
+    // determine the length of the resulting string
+    length = (size_t)snprintf(nullptr, 0, "%d", i);
     string = new char[length+1];
-    memcpy(string, buffer, length+1);
+    sprintf(string, "%d", i);
 }
 
 String::String(const double d) {
-    char buffer[BUFFER_SIZE];
-    length = (size_t)sprintf(buffer, "%f", d);
+    // determine the length of the resulting string
+    length = (size_t)snprintf(nullptr, 0, "%g", d);
     string = new char[length+1];
-    memcpy(string, buffer, length+1);
+    sprintf(string, "%g", d);
 }
 
 String::String(const bool b) {

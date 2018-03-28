@@ -11,11 +11,15 @@ cstring.h
 /Users/Sashok/Documents/2017-2018/S4/POO2/POO2-labos/POO2-Labo14/cstring.h
 limits
 -
+string.h
+-
 
 /Users/Sashok/Documents/2017-2018/S4/POO2/POO2-labos/POO2-Labo14/cstring.h
 cstddef
 -
 iostream
+-
+limits
 -
 
 /Users/Sashok/Documents/2017-2018/S4/POO2/POO2-labos/POO2-Labo14/main.cpp
