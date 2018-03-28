@@ -1,3 +1,9 @@
+/*
+ * Created by Alexandra Korukova and Samuel Mayor on 14/03/18.
+ *
+ * Test class for the String class
+*/
+
 #include <iostream>
 #include <limits>
 #include "cstring.h"

@@ -1,5 +1,5 @@
 /*
- * Created by Sacha Korukova and Samuel Mayor on 14/03/18.
+ * Created by Alexandra Korukova and Samuel Mayor on 14/03/18.
  *
  * This class is an ersatz of String implementation of the STL
 */
